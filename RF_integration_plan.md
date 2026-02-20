@@ -7,7 +7,7 @@
 
 ---
 
-## Hardware Setup Details (Wiring Guide)
+## Hardware Setup Details
 
 ### 1. 2.4 GHz Link (Video/Photos)
 *   **Modems**: Microhard pMDDL2450LC.
@@ -16,11 +16,11 @@
 
 ### 2. 900 MHz Link Options (Control)
 
-#### **Option A: Connect to Raspberry Pi (Selected Strategy)**
+#### **Option A: Connect to Raspberry Pi **
 *   **Wiring**: RFD900x -> USB-to-UART Adapter -> Raspberry Pi 5 USB Port.
 *   **Pros**: Unified ROS architecture, simple wiring.
 
-#### **Option B: Connect to Arduino Mega (Reliability Alternative)**
+#### **Option B: Connect to Arduino Mega **
 *   **Power Warning**: **Use an external 5V BEC (Battery Eliminator Circuit)**.
     *   *Why?* The Arduino's 5V pin cannot supply enough current for the radio's transmission spikes (~800mA). Drawing too much will reset the Arduino.
 *   **Wiring Detail**:
@@ -31,9 +31,9 @@
 
 ---
 
-## Architecture Trade-Off Analysis (Why choose Option A?)
+## Architecture Trade-Off Analysis
 
-### **Option A: Connect RFD900x to Raspberry Pi (Selected Strategy)**
+### **Option A: Connect RFD900x to Raspberry Pi **
 *   **Concept**: Radio talks to ROS 2 (Pi), ROS 2 talks to Arduino.
 *   **Pros:**
     1.  **Unified Architecture**: Control logic lives in high-level software (ROS). Easy to add autonomy (e.g., obstacle avoidance overrides).
@@ -43,7 +43,7 @@
     1.  **Software Dependency**: If Pi crashes, control is lost.
     2.  **Mitigation**: **MUST** add Watchdog Failsafe to Arduino firmware.
 
-### **Option B: Connect RFD900x to Arduino Mega (Alternative)**
+### **Option B: Connect RFD900x to Arduino Mega **
 *   **Concept**: Radio talks directly to motor controller.
 *   **Pros:**
     1.  **Hardware Safety**: Works even if the Pi/ROS crashes.
